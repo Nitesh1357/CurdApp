@@ -19,7 +19,7 @@ export default function UpdateProduct() {
     }
 
     try {
-      await axios.put(`http://localhost:8080/api/products/${id}`, product, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/${id}`, product, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
