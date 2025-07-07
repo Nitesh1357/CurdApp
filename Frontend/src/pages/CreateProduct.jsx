@@ -8,7 +8,7 @@ export default function CreateProduct() {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://localhost:8080/api/products/create", product, {
+      await axios.post(${import.meta.env.VITE_API_URL}/api/products/create", product, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
