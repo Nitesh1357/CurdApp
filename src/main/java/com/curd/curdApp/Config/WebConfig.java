@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {  // ✅ CLASS DEFINITION AD
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173") // Vite frontend origin
+                .allowedOrigins("http://localhost:5173", "https://my-frontend.onrender.com") // Vite frontend origin
                 .allowedMethods("*")                     // GET, POST, PUT, DELETE etc.
                 .allowedHeaders("*")                     // Accept all headers
                 .allowCredentials(true);                 // For cookies or Authorization headers
