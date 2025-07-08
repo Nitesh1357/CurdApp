@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234Nitesh@
+      MYSQL_DATABASE: curdapp
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-mysql-net
+
+  springboot-app:
+    image: niteshmishra31/curdapp:latest
+    container_name: springboot_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/curdapp?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234Nitesh@
+    networks:
+      - springboot-mysql-net
+
+networks:
+  springboot-mysql-net:
