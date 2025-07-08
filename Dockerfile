@@ -1,14 +1,14 @@
-# Use official Java 21 or 24 image
-FROM eclipse-temurin:21-jdk-alpine  # Use 24 if available and supported
+# Use official Java 21 image from Eclipse Temurin
+FROM eclipse-temurin:21-jdk
 
 # Set working directory
 WORKDIR /app
 
-# Copy the built JAR file (fix casing)
+# Copy the built JAR into the image
 COPY target/curdApp-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose port (Render sets this via env)
+# Expose the port your Spring Boot app listens on
 EXPOSE 8080
 
-# Start the Spring Boot app
+# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
