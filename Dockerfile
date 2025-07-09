@@ -15,15 +15,17 @@
 # Use official Maven image to build the application
 
 # Step 1: Build with Maven
-FROM maven:3.9.4-eclipse-temurin-21 AS build
+# Phase 1: Build the application
+FROM maven:3.9.4-eclipse-temurin-21 AS builder
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Step 2: Run with Temurin JDK
+# Phase 2: Run the built JAR
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+COPY target/curdApp-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
 
