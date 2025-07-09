@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: curdapp-backend
+    env: docker
+    repo: https://github.com/yourusername/your-repo-name
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_APPLICATION_NAME
+        value: curdApp
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://your-db-host:3306/curdapp?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 1234Nitesh@
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: com.mysql.cj.jdbc.Driver
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_SHOW_SQL
+        value: true
+      - key: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
+        value: org.hibernate.dialect.MySQL8Dialect
+      - key: SPRING_WEB_CORS_ALLOWED_ORIGINS
+        value: https://your-frontend.netlify.app
+      - key: APP_JWT_SECRET
+        value: your_jwt_secret_key
+      - key: APP_JWT_EXPIRATION
+        value: 86400000
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID
+        value: 464570692821-8mt2dh7168ds9l2d97d6sb5mv61jnkml.apps.googleusercontent.com
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET
+        value: 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
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI
+        value: https://curdapp-backend.onrender.com/login/oauth2/code/google
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_SCOPE
+        value: email,profile
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_AUTHORIZATION_URI
+        value: https://accounts.google.com/o/oauth2/v2/auth
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_TOKEN_URI
+        value: https://oauth2.googleapis.com/token
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_USER_INFO_URI
+        value: https://www.googleapis.com/oauth2/v3/userinfo
+      - key: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_USER_NAME_ATTRIBUTE
+        value: sub
