@@ -13,27 +13,17 @@
 # # Run the application
 # ENTRYPOINT ["java", "-jar", "app.jar"]
 # Use official Maven image to build the application
+
+# Step 1: Build with Maven
 FROM maven:3.9.4-eclipse-temurin-21 AS build
-
-# Set working directory
 WORKDIR /app
-
-# Copy all files
 COPY . .
-
-# Build the project
 RUN mvn clean package -DskipTests
 
-# ------------------------
-
-# Use lightweight JDK to run the app
+# Step 2: Run with Temurin JDK
 FROM eclipse-temurin:21-jdk
-
 WORKDIR /app
-
-# Copy the jar from the builder stage
-COPY --from=build /app/target/curdApp-0.0.1-SNAPSHOT.jar app.jar
-
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
