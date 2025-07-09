@@ -2,7 +2,7 @@ services:
   - type: web
     name: curdapp-backend
     env: docker
-    repo: https://github.com/yourusername/your-repo-name
+    repo: https://github.com/Nitesh1357/CurdApp
     region: oregon
     plan: free
     buildCommand: ""
